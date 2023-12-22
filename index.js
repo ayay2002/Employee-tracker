@@ -15,20 +15,42 @@ const db = mysql.createConnection(
 
 
 const viewEmployees = () => {
-    db.promise().query('SELECT * FROM employees').then(employees => {
+    db.promise().query('SELECT first_name FROM employees').then(employees => {
         console.table(employees);
         init()
     })
     // add schema for employees table
 };
 const viewDepartments = () => {
-    
+    db.promise().query('SELECT * FROM departments').then(departments => {
+        console.table(departments);
+        init()
+    })
 };
 const viewRoles = () => {
-    
+    db.promise().query('SELECT title FROM roles').then(roles => {
+        console.table(roles);
+        init()
+    })
 };
 const addEmployee = () => {
-    
+    prompt([
+        {
+            type: 'imput',
+            name: 'first_name',
+            message: `What is this employee's first name?`
+        }, {
+            type: 'imput',
+            name: 'last_name',
+            message: `What is this employee's last name?`
+        },{
+
+        }
+    ])
+    db.promise().query('INSERT INTO employee(id, first_name, last_name, role_id, manager_id').then(employees =>{
+        console.table(employees)
+        init()
+    })
 };
 const addDepartment = () => {
     
